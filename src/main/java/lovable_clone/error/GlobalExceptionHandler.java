@@ -62,6 +62,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(apiError.status()).body(apiError);
     }
 
+    @ExceptionHandler(InvalidGoogleTokenException.class)
+    public ResponseEntity<ApiError> handleInvalidGoogleToken(InvalidGoogleTokenException ex) {
+        ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED, ex.getMessage());
+        log.error(apiError.toString(), ex);
+        return ResponseEntity.status(apiError.status()).body(apiError);
+    }
+
      @ExceptionHandler(AcceptPendingException.class)
         public ResponseEntity<ApiError> handleAcceptPendingException(AcceptPendingException ex) {
             ApiError apiError = new ApiError(HttpStatus.FORBIDDEN, "An unexpected error occurred: " + ex.getMessage());
