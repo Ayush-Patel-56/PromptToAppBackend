@@ -58,7 +58,7 @@ public class StripePaymentProcessor implements PaymentProcessor {
                 .putMetadata("plan_id", plan.getId().toString());
 
         if(stripeCustomerId == null || stripeCustomerId.isEmpty()){
-            paramsBuilder.setCustomerEmail(user.getUsername());
+            paramsBuilder.setCustomerEmail(user.getEmail());
         }else{
             paramsBuilder.setCustomer(stripeCustomerId);
         }

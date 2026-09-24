@@ -21,8 +21,11 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String username;
-    String password;
+    String email;
+
+    @Column(unique = true, nullable = false)
+    String googleId;
+
     String name;
     @Column(unique = true)
     String stripeCustomerId;
