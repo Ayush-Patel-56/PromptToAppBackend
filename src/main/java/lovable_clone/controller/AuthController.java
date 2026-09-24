@@ -1,7 +1,10 @@
 package lovable_clone.controller;
 
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import lovable_clone.dto.authdto.AuthResponse;
+import lovable_clone.dto.authdto.GoogleAuthRequest;
 import lovable_clone.dto.authdto.UserProfileResponse;
 import lovable_clone.service.AuthService;
 import lovable_clone.service.UserService;
@@ -17,6 +20,11 @@ public class AuthController {
 
     AuthService authService;
     UserService userService;
+
+    @PostMapping("/google")
+    public ResponseEntity<AuthResponse> loginWithGoogle(@Valid @RequestBody GoogleAuthRequest request){
+        return ResponseEntity.ok(authService.loginWithGoogle(request));
+    }
 
     @GetMapping("/me")
     public ResponseEntity<UserProfileResponse> getProfile(){
